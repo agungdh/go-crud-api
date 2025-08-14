@@ -35,9 +35,6 @@
 
       # Runs when a workspace is (re)started
       onStart = {
-        # Opsional: cek daemon sudah siap (tidak wajib, tapi berguna untuk log cepat)
-        docker-warmup = "docker version || true";
-
         # Jalankan hot-reload Go
         run-server = "air";
       };
