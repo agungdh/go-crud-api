@@ -1,9 +1,9 @@
 package router
 
 import (
-	"github.com/gin-gonic/gin"
 	"github.com/agungdh/go-crud-api/handler"
 	"github.com/agungdh/go-crud-api/middleware"
+	"github.com/gin-gonic/gin"
 )
 
 type Deps struct {
@@ -15,11 +15,13 @@ type Deps struct {
 func New(d *Deps) *gin.Engine {
 	r := gin.New()
 	r.Use(gin.Recovery())
-	r.Use(gin.Logger())            // log access
-	r.Use(middleware.RequestID())  // contoh middleware custom
+	r.Use(gin.Logger())           // log access
+	r.Use(middleware.RequestID()) // contoh middleware custom
 
 	// Health & meta
-	r.GET("/health", handler.Health())
+	r.GET("/health", handler.HealthHandler())
+
+	r.GET("/project", handler.ProjectHandler())
 
 	return r
 }
