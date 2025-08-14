@@ -20,7 +20,7 @@ func main() {
 	r := router.New(&router.Deps{
 		Logger: deps.Logger, // cocok dengan interface Printf di router.Deps
 	})
-	
+
 	if err := r.Run(":8080"); err != nil {
 		log.Fatal(err)
 	}
