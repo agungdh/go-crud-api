@@ -1,9 +1,8 @@
-# To learn more about how to use Nix to configure your environment
-# see: https://developers.google.com/idx/guides/customize-idx-env
 { pkgs, ... }: {
   # Which nixpkgs channel to use.
   channel = "stable-25.05"; # or "unstable"
-  # Use https://search.nixos.org/packages to find packages
+
+  # Packages yang kamu butuhkan
   packages = [
     pkgs.go
     pkgs.air
@@ -15,23 +14,33 @@
     pkgs.docker-buildx
     pkgs.docker-compose
   ];
+
+  # Enable Docker (rootless) sebagai service supaya otomatis jalan saat start
+  services.docker.enable = true;
+
   # Sets environment variables in the workspace
   env = {};
+
   idx = {
-    # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
+    # VS Code extensions
     extensions = [
       "golang.go"
     ];
+
     workspace = {
       onCreate = {
         # Open editors for the following files by default, if they exist:
         default.openFiles = ["main.go"];
       };
+
       # Runs when a workspace is (re)started
-      onStart= {
+      onStart = {
+        # Opsional: cek daemon sudah siap (tidak wajib, tapi berguna untuk log cepat)
+        docker-warmup = "docker version || true";
+
+        # Jalankan hot-reload Go
         run-server = "air";
       };
-      # To run something each time the workspace is first created, use the `onStart` hook
     };
   };
 }
