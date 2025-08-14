@@ -1,16 +1,27 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"net/http"
+	"log"
+	"os"
+
+	"github.com/agungdh/go-crud-api/router"
 )
 
+type AppDeps struct {
+	// contoh dependencies: logger, db, config, dll
+	Logger *log.Logger
+}
+
 func main() {
-	router := gin.Default()
-	router.GET("/ping", func(c *gin.Context) {
-	  c.JSON(http.StatusOK, gin.H{
-		"message": "pong",
-	  })
+	deps := &AppDeps{
+		Logger: log.New(os.Stdout, "[myapp] ", log.LstdFlags|log.Lshortfile),
+	}
+
+	r := router.New(&router.Deps{
+		Logger: deps.Logger, // cocok dengan interface Printf di router.Deps
 	})
-	router.Run() // listen and serve on 0.0.0.0:8080
+	
+	if err := r.Run(":8080"); err != nil {
+		log.Fatal(err)
+	}
 }
