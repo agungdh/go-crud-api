@@ -7,6 +7,7 @@
     pkgs.go
     pkgs.air
     pkgs.btop
+    pkgs.htop
     pkgs.fastfetch
     pkgs.nano
     pkgs.wget
@@ -15,6 +16,9 @@
     pkgs.docker-compose
     pkgs.flyway
     pkgs.bash-completion
+    pkgs.zram-generator
+    pkgs.util-linux
+    
   ];
 
   # Enable Docker (rootless) sebagai service supaya otomatis jalan saat start
