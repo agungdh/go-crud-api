@@ -15,7 +15,6 @@ func New(d *Deps) *gin.Engine {
 	r := gin.New()
 	r.Use(gin.Recovery())
 	r.Use(gin.Logger())           // log access
-	r.Use(middleware.RequestID()) // contoh middleware custom
 
 	// Health & meta
 	r.GET("/health", handler.HealthHandler())
