@@ -13,6 +13,8 @@
     pkgs.docker
     pkgs.docker-buildx
     pkgs.docker-compose
+    pkgs.flyway
+    pkgs.bash-completion
   ];
 
   # Enable Docker (rootless) sebagai service supaya otomatis jalan saat start
