@@ -2,7 +2,6 @@ package router
 
 import (
 	"github.com/agungdh/go-crud-api/handler"
-	"github.com/agungdh/go-crud-api/middleware"
 	"github.com/gin-gonic/gin"
 )
 
